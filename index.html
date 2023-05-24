@@ -129,7 +129,7 @@
 		<div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
 			<div class="d-flex justify-content-center align-items-center h-100">
 				<div class="text-white">
-					<h1 class="mb-3"><img src="assets/images/brand/pokemonBrandName2.png" width="40%"></h1>
+					<!-- <h1 class="mb-3"><img src="assets/images/brand/pokemonBrandName2.png" width="40%"></h1> -->
 
 					<div class="container">
 						
@@ -153,6 +153,8 @@
 								<div class="row">
 									Enemy Pick:
 									<div id="enemypick" style="color:black;">
+									</div>
+                                    <div id="enemypicklogo">
 									</div>
 								</div>
 
@@ -201,10 +203,14 @@
 						}
 
                         function endGame(){
+                            document.getElementById('enemypick').innerHTML="";
+                            document.getElementById('enemypicklogo').innerHTML="";
+
+
                             scoreplayer = 0;
                             enemyplayer = 0;
-								document.getElementById('scoreenemy').textContent=enemyplayer;
-								document.getElementById('scoreplayer').textContent=scoreplayer;
+                            document.getElementById('scoreenemy').textContent=enemyplayer;
+                            document.getElementById('scoreplayer').textContent=scoreplayer;
 
 							document.getElementById('secondCardstart').style.display = "block";
 							document.getElementById('secondCard').style.display = "none";
@@ -218,6 +224,20 @@
 							const randomPick = getRandomElement(botPuck);
 							console.log(randomPick);
 							document.getElementById('enemypick').textContent="Enemy Pick: "+randomPick;
+
+                            // if(randomPick == 'scissor'){
+                            //     logo = 'fa-solid fa-scissors'
+                            // }
+
+                            // if(randomPick == 'rock'){
+                            //     logo = 'fa-solid fa-globe'
+                            // }
+
+                            // if(randomPick == 'paper'){
+                            //     logo = 'fa-solid fa-file'
+                            // }
+
+							document.getElementById('enemypicklogo').innerHTML='<img width="100px" src="assets/images/'+randomPick+'.png"/>';
 							whoWin(randomPick,'rock');
 						}
 
@@ -228,6 +248,20 @@
 							const randomPick = getRandomElement(botPuck);
 							console.log(randomPick);
 							document.getElementById('enemypick').textContent="Enemy Pick: "+randomPick;
+
+                            // if(randomPick == 'scissor'){
+                            //     logo = 'fa-solid fa-scissors'
+                            // }
+
+                            // if(randomPick == 'rock'){
+                            //     logo = 'fa-solid fa-globe'
+                            // }
+
+                            // if(randomPick == 'paper'){
+                            //     logo = 'fa-solid fa-file'
+                            // }
+
+							document.getElementById('enemypicklogo').innerHTML='<img width="100px" src="assets/images/'+randomPick+'.png"/>';
 							whoWin(randomPick,'paper');
 						}
 
@@ -238,6 +272,20 @@
 							const randomPick = getRandomElement(botPuck);
 							console.log(randomPick);
 							document.getElementById('enemypick').textContent="Enemy Pick: "+randomPick;
+
+                            // if(randomPick == 'scissor'){
+                            //     logo = 'fa-solid fa-scissors'
+                            // }
+
+                            // if(randomPick == 'rock'){
+                            //     logo = 'fa-solid fa-globe'
+                            // }
+
+                            // if(randomPick == 'paper'){
+                            //     logo = 'fa-solid fa-file'
+                            // }
+
+							document.getElementById('enemypicklogo').innerHTML='<img width="100px" src="assets/images/'+randomPick+'.png"/>';
 							whoWin(randomPick,'scissor');
 						}
 
@@ -291,8 +339,6 @@
 							}
 
 						}
-
-
 
 
 

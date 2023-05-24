@@ -1,0 +1,113 @@
+/* html, body {
+    overflow-x: hidden;
+} */
+
+body {
+    background-color: #c8c8c8;
+}
+
+/* Customize the scrollbar track */
+::-webkit-scrollbar {
+    width: 6px; /* Set the width of the scrollbar */
+    height: 12px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background-color: #383636; /* Set the color of the scrollbar handle */
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #0f0e0e; /* Set the color of the scrollbar handle on hover */
+}
+
+::-webkit-scrollbar-track {
+    background-color: #888;
+}
+
+#preloader-background {
+    background: #c8c8c8;
+    background-size: 10%;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 10;
+}
+
+#preloader {
+    background: no-repeat center center url(../images/misc/pokeball_loader.png);
+    animation: rotate-infinite 2s linear infinite;background-size: 10%;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 20;
+}
+
+@keyframes rotate-infinite {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+}
+
+section{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+div.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    padding: 5px;
+    background-color: #cae8ca;
+    border: 2px solid #4CAF50;
+}
+
+.cardloader{
+    background-image: url(../images/misc/cardloader.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+
+
+
+.scroll-button {
+    /* Add CSS styles for the scroll button */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    /* ... */
+  }
+
+
+
+
+
+
+/* ---------------------------------------------------------- */
+
+pokemonBackroundColor {
+    background: linear-gradient(to right, #ff0000 0%, #00ff00 50%, #0000ff 100%);
+}
+
+.swal2-title {
+    font-family: Roboto, sans-serif !important;
+    font-size: 20px !important;
+    font-weight: lighter !important;
+    /* font-style: italic !important; */
+}
+
+
+
+@media (max-width:768px) {
+    html, body{
+        overflow-x: hidden;
+    }
+}

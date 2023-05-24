@@ -203,6 +203,23 @@
 						}
 
                         function endGame(){
+
+
+                            if(scoreplayer > enemyplayer){
+                                Swal.fire('Congratulation!!!! You Won!!')
+                            }
+
+                            if(scoreplayer < enemyplayer){
+                                Swal.fire('You Lose!!')
+                            }
+
+                            if(scoreplayer == enemyplayer){
+                                Swal.fire('Draw!!')
+                            }
+
+
+
+
                             document.getElementById('enemypick').innerHTML="";
                             document.getElementById('enemypicklogo').innerHTML="";
 
@@ -296,6 +313,7 @@
 
 
 						function whoWin(bot,player){
+
 							if(player == 'rock' && bot == 'rock'){
 								document.getElementById('result').textContent='Match Draw';
 							}
@@ -309,6 +327,7 @@
 								scoreplayer++;
 								document.getElementById('scoreplayer').textContent=scoreplayer;
 							}
+
 
 							if(player == 'paper' && bot == 'rock'){
 								document.getElementById('result').textContent='You Win';

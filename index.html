@@ -133,17 +133,20 @@
 
 					<div class="container mt-5">
                         <div class="mt-4 row">
-                            <div class="card mt-5 px-1 " style="border-radius: 5px;" id="secondCardstart">
-                                <div class="card-body container-fluid">
-                                    <button id="secondCardstart" class="btn bg-dark" onclick="startGame()">Start</button>
-                                </div>
+                            <div class="card mt-5 p-3 " style="border-radius: 5px;" id="secondCardstart">
+                                <!-- <form> -->
+                                    <input onkeydown="showstartbutton()" onchange="showstartbutton()" id="username"class="form-control rounded" placeholder="Enter your name" required/>
+                                    <div class="card-body container-fluid">
+                                        <button id="secondCardstartbtn" class="btn bg-dark" onclick="startGame()" style="display: none;" type="submit">Start</button>
+                                    </div>
+                                <!-- </form> -->
                             </div>
                             <div style="display:none;" class="card my-4 px-1" style="border-radius: 5px;" id="secondCard">
                                 <div class="card-body container-fluid text-center">
     
                                     <div class="row">
                                         <div id="scoreboard" style="color:black; display:flex; justify-content:space-between;">
-                                            <h1 >Player<h2 id="scoreplayer">0</h2></h1>
+                                            <h1 id="playername"></h1><h2 id="scoreplayer">0</h2>
                                             <h1 >Enemy<h2 id="scoreenemy">0</h2></h1>
                                         </div>
                                     </div>
@@ -193,15 +196,36 @@
 
 						let scoreplayer = 0;
 						let enemyplayer = 0;
+                        var username = "";
+
+                        function showstartbutton(){
+                            
+                            if(!document.getElementById('username').value == ""){
+                                document.getElementById('secondCardstartbtn').style.display="block";
+                                username = document.getElementById('username').value;
+                            }
+                            else{
+                                document.getElementById('secondCardstartbtn').style.display="none";
+                            }
+                        }
 
 						function startGame(){
-							document.getElementById('secondCardstart').style.display = "none";
-							document.getElementById('secondCard').style.display = "block";
+                            if(!document.getElementById('username').value == ""){
+                                document.getElementById('playername').textContent=username;
+                                document.getElementById('secondCardstart').style.display = "none";
+                                document.getElementById('secondCard').style.display = "block";
+                            }
+                            else{
+                                Swal.fire('Wag makulit maglagay k ng name!!!')
+                            }
 						}
 
                         function endGame(){
+                            document.getElementById('secondCardstartbtn').style.display="none";
+                            document.getElementById('username').value="";
+
                             if(scoreplayer > enemyplayer){
-                                Swal.fire('Your Score:'+scoreplayer+'\nEnemy Score:'+enemyplayer+'\n\nCongratulation!!!! You Won!!')
+                                Swal.fire('Your Score:'+scoreplayer+'\nEnemy Score:'+enemyplayer+'\n\nCongratulation!!!! '+username+'\n\nYou Won!!')
                             }
                             if(scoreplayer < enemyplayer){
                                 Swal.fire('Your Score:'+scoreplayer+'\nEnemy Score:'+enemyplayer+'\n\n\nYou Lose!!')
@@ -209,6 +233,7 @@
                             if(scoreplayer == enemyplayer){
                                 Swal.fire('Your Score:'+scoreplayer+'\nEnemy Score:'+enemyplayer+'\n\n\nDraw!!')
                             }
+                            username="";
                             document.getElementById('enemypick').innerHTML="";
                             document.getElementById('enemypicklogo').innerHTML="";
                             document.getElementById('result').innerHTML="";
@@ -222,73 +247,28 @@
 						}
 
 						function gamerock(){
-
 							let botPuck = ['rock', 'paper', 'scissor'];
-
 							const randomPick = getRandomElement(botPuck);
 							console.log(randomPick);
 							document.getElementById('enemypick').textContent="Enemy Pick: "+randomPick;
-
-                            // if(randomPick == 'scissor'){
-                            //     logo = 'fa-solid fa-scissors'
-                            // }
-
-                            // if(randomPick == 'rock'){
-                            //     logo = 'fa-solid fa-globe'
-                            // }
-
-                            // if(randomPick == 'paper'){
-                            //     logo = 'fa-solid fa-file'
-                            // }
-
 							document.getElementById('enemypicklogo').innerHTML='<img width="100px" src="assets/images/'+randomPick+'.png"/>';
 							whoWin(randomPick,'rock');
 						}
 
 						function gamepaper(){
-
 							let botPuck = ['rock', 'paper', 'scissor'];
-
 							const randomPick = getRandomElement(botPuck);
 							console.log(randomPick);
 							document.getElementById('enemypick').textContent="Enemy Pick: "+randomPick;
-
-                            // if(randomPick == 'scissor'){
-                            //     logo = 'fa-solid fa-scissors'
-                            // }
-
-                            // if(randomPick == 'rock'){
-                            //     logo = 'fa-solid fa-globe'
-                            // }
-
-                            // if(randomPick == 'paper'){
-                            //     logo = 'fa-solid fa-file'
-                            // }
-
 							document.getElementById('enemypicklogo').innerHTML='<img width="100px" src="assets/images/'+randomPick+'.png"/>';
 							whoWin(randomPick,'paper');
 						}
 
 						function gamescissor(){
-
 							let botPuck = ['rock', 'paper', 'scissor'];
-
 							const randomPick = getRandomElement(botPuck);
 							console.log(randomPick);
 							document.getElementById('enemypick').textContent="Enemy Pick: "+randomPick;
-
-                            // if(randomPick == 'scissor'){
-                            //     logo = 'fa-solid fa-scissors'
-                            // }
-
-                            // if(randomPick == 'rock'){
-                            //     logo = 'fa-solid fa-globe'
-                            // }
-
-                            // if(randomPick == 'paper'){
-                            //     logo = 'fa-solid fa-file'
-                            // }
-
 							document.getElementById('enemypicklogo').innerHTML='<img width="100px" src="assets/images/'+randomPick+'.png"/>';
 							whoWin(randomPick,'scissor');
 						}
@@ -299,7 +279,6 @@
 						}
 
 						function whoWin(bot,player){
-
 							if(player == 'rock' && bot == 'rock'){
 								document.getElementById('result').textContent='Match Draw';
 							}
@@ -313,8 +292,6 @@
 								scoreplayer++;
 								document.getElementById('scoreplayer').textContent=scoreplayer;
 							}
-
-
 							if(player == 'paper' && bot == 'rock'){
 								document.getElementById('result').textContent='You Win';
 								scoreplayer++;
@@ -328,7 +305,6 @@
 								enemyplayer++;
 								document.getElementById('scoreenemy').textContent=enemyplayer;
 							}
-
 							if(player == 'scissor' && bot == 'rock'){
 								document.getElementById('result').textContent='You Lose';
 								enemyplayer++;
@@ -342,7 +318,6 @@
 							if(player == 'scissor' && bot == 'scissor'){
 								document.getElementById('result').textContent='Match Draw';
 							}
-
 						}
 
 					</script>
@@ -412,7 +387,6 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!-- sweetalert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
-	<script src="'assets/js/index.js"></script>
 
 
 
